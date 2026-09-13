@@ -23,6 +23,8 @@ android.accept_sdk_license = True
 android.archs = arm64-v8a
 android.allow_backup = True
 
+p4a.source_dir = ./p4a-src
+
 [buildozer]
 log_level = 2
 warn_on_root = 1
