@@ -44,6 +44,11 @@ jobs:
         run: |
           pip3 install --upgrade buildozer cython virtualenv
 
+      - name: Clone and patch python-for-android
+        run: |
+          git clone -b master --single-branch https://github.com/kivy/python-for-android.git p4a-src
+          grep -rl 'download.savannah.gnu.org' p4a-src/pythonforandroid/recipes/ | xargs -r sed -i 's/download.savannah.gnu.org/download.savannah.nongnu.org/g'
+
       - name: Build APK
         run: |
           export MAKEFLAGS="-j1"
@@ -53,4 +58,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ecoshop-register-apk
-          path: bin/*.apk
+          path:
